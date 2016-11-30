@@ -1,3 +1,3 @@
-Project desc
+Scala Programming
 * 1
 * 2
