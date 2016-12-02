@@ -14,6 +14,5 @@
         <option name="sbtVersion" value="0.13.9" />
       </SbtProjectSettings>
     </option>
-    <option name="vmParameters" value="-XX:MaxPermSize=384M -Dhttp.proxyHost=10.15.34.4 -Dhttp.proxyPort=8080 -Dhttps.proxyHost=10.15.34.4 -Dhttps.proxyPort=8080 -Dhttp.proxyUser=howardj5 -Dhttp.proxyPassword=&quot;Liverp..l05&quot; -Dhttp.nonProxyHosts=&quot;localhost&quot;" />
   </component>
 </project>

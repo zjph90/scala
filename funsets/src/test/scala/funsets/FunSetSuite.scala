@@ -171,6 +171,25 @@ class FunSetSuite extends FunSuite {
     }
   }
 
+  test("exits ") {
+    new TestSets {
+      def is_three(x: Int) = x == 3
+      assert(exists(s_odd, is_three), "Three is odd")
+      assert(!exists(s_even, is_three), "Three is not even")
+    }
+  }
+
+  test("map") {
+    new TestSets {
+      val s = union(union(s1,s2),s3)
+      val sqs = map(s, x => x*x)
+      assert(contains(sqs, 9), "9 is a square")
+      assert(!contains(sqs, 8), "8 is not a square")
+      printSet(sqs)
+    }
+  }
+
+
 
 
 
