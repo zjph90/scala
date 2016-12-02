@@ -103,6 +103,38 @@ class FunSetSuite extends FunSuite {
     }
   }
 
+  test("s_even contains evens") {
+
+    /**
+      * We create a new instance of the "TestSets" trait, this gives us access
+      * to the values "s1" to "s3".
+      */
+    new TestSets {
+      /**
+        * The string argument of "assert" is a message that is printed in case
+        * the test fails. This helps identifying which assertion failed.
+        */
+      assert(contains(s_even, 2), "s_even should contain 2")
+      assert(!contains(s_even, 1), "s_even shouldn't contain 1")
+    }
+  }
+
+  test("s_odd contains odds") {
+
+    /**
+      * We create a new instance of the "TestSets" trait, this gives us access
+      * to the values "s1" to "s3".
+      */
+    new TestSets {
+      /**
+        * The string argument of "assert" is a message that is printed in case
+        * the test fails. This helps identifying which assertion failed.
+        */
+      assert(contains(s_odd, 1), "s_odd should contain 1")
+      assert(!contains(s_odd, 2), "s_odd shouldn't contain 2")
+    }
+  }
+
   test("union contains all elements of each set") {
     new TestSets {
       val s = union(s1, s2)
@@ -112,14 +144,34 @@ class FunSetSuite extends FunSuite {
     }
   }
 
-  test("intersect contains all elements of each set") {
+  test("intersect contains only elements in both sets") {
     new TestSets {
-      val s = union(s1, s2)
-      assert(contains(s, 1), "Union 1")
-      assert(contains(s, 2), "Union 2")
-      assert(!contains(s, 3), "Union 3")
+      val s = intersect(s1, s_odd)
+      assert(contains(s, 1), "One is odd!")
+      assert(!contains(s, 2), "2 is not odd or in s1")
+      assert(!contains(s, 3), "3 is not in s1")
     }
   }
+
+  test("diff contains elements in first NOT in second") {
+    new TestSets {
+      val s = diff(s_odd, s1)
+      assert(!contains(s, 1), "Shouldn't contain 1")
+      assert(!contains(s, 2), "Shouldn't contain 2")
+      assert(contains(s, 3), "Should contain 3")
+    }
+  }
+
+  test("for all odds - are they odd?") {
+    new TestSets {
+      def is_odd(x: Int) = x%2 == 1
+      val s = union(s_odd, s2)
+      assert(forall(s_odd, is_odd), "Should all be odd")
+      assert(!forall(s, is_odd), "Not all odd - has a 2")
+    }
+  }
+
+
 
 
 }
